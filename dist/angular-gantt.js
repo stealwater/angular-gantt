@@ -7,7 +7,7 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"), require("moment"), require("ElementQueries"), require("ResizeSensor"), require("angular-native-dragdrop"), require("jsPlumb"), require("ui.tree"));
+		module.exports = factory(require("angular"), require("moment"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("angular-native-dragdrop"), require("jsPlumb"), require("ui.tree"));
 	else if(typeof define === 'function' && define.amd)
 		define("angular-gantt", ["angular", "moment", "ElementQueries", "ResizeSensor", "angular-native-dragdrop", "jsPlumb", "ui.tree"], factory);
 	else if(typeof exports === 'object')
@@ -651,7 +651,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
