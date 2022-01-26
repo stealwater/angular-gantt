@@ -508,7 +508,8 @@ export class GanttColumnsManager {
     if (scale === undefined) {
       scale = header
     }
-    if (['millisecond', 'second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'].indexOf(scale) === -1) {
+
+    if (['millisecond', 'second', 'minute', 'hour', 'day', 'week', 'month', 'quarter', 'year'].some(ele => scale.includes(ele)) !== true) {
       scale = 'day'
     }
     return scale
