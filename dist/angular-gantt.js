@@ -7,13 +7,13 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsPlumb"));
+		module.exports = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsplumb"));
 	else if(typeof define === 'function' && define.amd)
-		define("angular-gantt", ["angular", "moment", "angular-native-dragdrop", "angular-ui-tree", "css-element-queries/src/ElementQueries", "css-element-queries/src/ResizeSensor", "jsPlumb"], factory);
+		define("angular-gantt", ["angular", "moment", "angular-native-dragdrop", "angular-ui-tree", "css-element-queries/src/ElementQueries", "css-element-queries/src/ResizeSensor", "jsplumb"], factory);
 	else if(typeof exports === 'object')
-		exports["angular-gantt"] = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsPlumb"));
+		exports["angular-gantt"] = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsplumb"));
 	else
-		root["angular-gantt"] = factory(root["angular"], root["moment"], root["angular-native-dragdrop"], root["angular-ui-tree"], root["css-element-queries/src/ElementQueries"], root["css-element-queries/src/ResizeSensor"], root["jsPlumb"]);
+		root["angular-gantt"] = factory(root["angular"], root["moment"], root["angular-native-dragdrop"], root["angular-ui-tree"], root["css-element-queries/src/ElementQueries"], root["css-element-queries/src/ResizeSensor"], root["jsplumb"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_261__, __WEBPACK_EXTERNAL_MODULE_262__, __WEBPACK_EXTERNAL_MODULE_263__, __WEBPACK_EXTERNAL_MODULE_264__, __WEBPACK_EXTERNAL_MODULE_265__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -651,7 +651,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library` 
+$export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
@@ -11511,7 +11511,7 @@ exports.default = ["GanttDependency", "GanttDependenciesEvents", "GanttDependenc
         this.api.registerEvent('dependencies', 'add');
         this.api.registerEvent('dependencies', 'change');
         this.api.registerEvent('dependencies', 'remove');
-        this.plumb = _jsplumb2.default.jsPlumb ? _jsplumb2.default.jsPlumb.getInstance() : _jsplumb2.default.getInstance();
+        this.plumb = _jsplumb2.default.jsplumb ? _jsplumb2.default.jsplumb.getInstance() : _jsplumb2.default.getInstance();
         this.plumb.importDefaults(this.pluginScope.jsPlumbDefaults);
         this.dependenciesFrom = {};
         this.dependenciesTo = {};
