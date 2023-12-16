@@ -4615,12 +4615,18 @@ var GanttHeadersGenerator = function () {
             var viewScaleValue = void 0;
             var viewScaleUnit = void 0;
             var splittedViewScale = void 0;
+            var viewScaleValueArray = [];
             if (viewScale) {
                 splittedViewScale = viewScale.split(' ');
             }
             if (splittedViewScale && splittedViewScale.length > 1) {
                 viewScaleValue = parseFloat(splittedViewScale[0]);
                 viewScaleUnit = splittedViewScale[splittedViewScale.length - 1];
+                if (splittedViewScale.length > 2) {
+                    for (var i = 0; i < splittedViewScale.length - 1; i++) {
+                        viewScaleValueArray.push(splittedViewScale[i]);
+                    }
+                }
             } else {
                 viewScaleValue = 1;
                 viewScaleUnit = viewScale;
@@ -4629,7 +4635,14 @@ var GanttHeadersGenerator = function () {
                 var currentColumn = columnsManager.columns[0];
                 var currentDate = (0, _moment2.default)(currentColumn.date).startOf(viewScaleUnit);
                 var maximumDate = (0, _moment2.default)(columnsManager.columns[columnsManager.columns.length - 1].endDate);
+                var viewScaleValueArrayIndex = 0;
                 while (true) {
+                    if (viewScaleValueArray.length > 0) {
+                        viewScaleValue = viewScaleValueArray[viewScaleValueArrayIndex++];
+                        if (viewScaleValueArrayIndex >= viewScaleValueArray.length) {
+                            viewScaleValueArrayIndex = 0;
+                        }
+                    }
                     var currentPosition = currentColumn.getPositionByDate(currentDate);
                     var endDate = _moment2.default.min((0, _moment2.default)(currentDate).add(viewScaleValue, viewScaleUnit), maximumDate);
                     var column = columnsManager.getColumnByDate(endDate);

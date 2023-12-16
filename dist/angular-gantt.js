@@ -7,13 +7,13 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsplumb"));
+		module.exports = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsPlumb"));
 	else if(typeof define === 'function' && define.amd)
-		define("angular-gantt", ["angular", "moment", "angular-native-dragdrop", "angular-ui-tree", "css-element-queries/src/ElementQueries", "css-element-queries/src/ResizeSensor", "jsplumb"], factory);
+		define("angular-gantt", ["angular", "moment", "angular-native-dragdrop", "angular-ui-tree", "css-element-queries/src/ElementQueries", "css-element-queries/src/ResizeSensor", "jsPlumb"], factory);
 	else if(typeof exports === 'object')
-		exports["angular-gantt"] = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsplumb"));
+		exports["angular-gantt"] = factory(require("angular"), require("moment"), require("angular-native-dragdrop"), require("angular-ui-tree"), require("css-element-queries/src/ElementQueries"), require("css-element-queries/src/ResizeSensor"), require("jsPlumb"));
 	else
-		root["angular-gantt"] = factory(root["angular"], root["moment"], root["angular-native-dragdrop"], root["angular-ui-tree"], root["css-element-queries/src/ElementQueries"], root["css-element-queries/src/ResizeSensor"], root["jsplumb"]);
+		root["angular-gantt"] = factory(root["angular"], root["moment"], root["angular-native-dragdrop"], root["angular-ui-tree"], root["css-element-queries/src/ElementQueries"], root["css-element-queries/src/ResizeSensor"], root["jsPlumb"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_261__, __WEBPACK_EXTERNAL_MODULE_262__, __WEBPACK_EXTERNAL_MODULE_263__, __WEBPACK_EXTERNAL_MODULE_264__, __WEBPACK_EXTERNAL_MODULE_265__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -651,7 +651,7 @@ $export.P = 8;   // proto
 $export.B = 16;  // bind
 $export.W = 32;  // wrap
 $export.U = 64;  // safe
-$export.R = 128; // real proto method for `library`
+$export.R = 128; // real proto method for `library` 
 module.exports = $export;
 
 /***/ }),
@@ -4615,12 +4615,18 @@ var GanttHeadersGenerator = function () {
             var viewScaleValue = void 0;
             var viewScaleUnit = void 0;
             var splittedViewScale = void 0;
+            var viewScaleValueArray = [];
             if (viewScale) {
                 splittedViewScale = viewScale.split(' ');
             }
             if (splittedViewScale && splittedViewScale.length > 1) {
                 viewScaleValue = parseFloat(splittedViewScale[0]);
                 viewScaleUnit = splittedViewScale[splittedViewScale.length - 1];
+                if (splittedViewScale.length > 2) {
+                    for (var i = 0; i < splittedViewScale.length - 1; i++) {
+                        viewScaleValueArray.push(splittedViewScale[i]);
+                    }
+                }
             } else {
                 viewScaleValue = 1;
                 viewScaleUnit = viewScale;
@@ -4629,7 +4635,14 @@ var GanttHeadersGenerator = function () {
                 var currentColumn = columnsManager.columns[0];
                 var currentDate = (0, _moment2.default)(currentColumn.date).startOf(viewScaleUnit);
                 var maximumDate = (0, _moment2.default)(columnsManager.columns[columnsManager.columns.length - 1].endDate);
+                var viewScaleValueArrayIndex = 0;
                 while (true) {
+                    if (viewScaleValueArray.length > 0) {
+                        viewScaleValue = viewScaleValueArray[viewScaleValueArrayIndex++];
+                        if (viewScaleValueArrayIndex >= viewScaleValueArray.length) {
+                            viewScaleValueArrayIndex = 0;
+                        }
+                    }
                     var currentPosition = currentColumn.getPositionByDate(currentDate);
                     var endDate = _moment2.default.min((0, _moment2.default)(currentDate).add(viewScaleValue, viewScaleUnit), maximumDate);
                     var column = columnsManager.getColumnByDate(endDate);
@@ -11511,7 +11524,7 @@ exports.default = ["GanttDependency", "GanttDependenciesEvents", "GanttDependenc
         this.api.registerEvent('dependencies', 'add');
         this.api.registerEvent('dependencies', 'change');
         this.api.registerEvent('dependencies', 'remove');
-        this.plumb = _jsplumb2.default.jsplumb ? _jsplumb2.default.jsplumb.getInstance() : _jsplumb2.default.getInstance();
+        this.plumb = _jsplumb2.default.jsPlumb ? _jsplumb2.default.jsPlumb.getInstance() : _jsplumb2.default.getInstance();
         this.plumb.importDefaults(this.pluginScope.jsPlumbDefaults);
         this.dependenciesFrom = {};
         this.dependenciesTo = {};

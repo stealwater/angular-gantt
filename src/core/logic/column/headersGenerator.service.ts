@@ -14,12 +14,21 @@ export default class GanttHeadersGenerator {
     let viewScaleUnit
     let splittedViewScale
 
+    let viewScaleValueArray = []
+
     if (viewScale) {
       splittedViewScale = viewScale.split(' ')
     }
     if (splittedViewScale && splittedViewScale.length > 1) {
-      viewScaleValue = parseFloat(splittedViewScale[0])
+      viewScaleValue = parseFloat(splittedViewScale[0])      
       viewScaleUnit = splittedViewScale[splittedViewScale.length - 1]
+
+      if (splittedViewScale.length > 2) {
+        for (let i = 0; i < splittedViewScale.length - 1; i++) {
+          viewScaleValueArray.push(splittedViewScale[i])
+        }
+      }
+
     } else {
       viewScaleValue = 1
       viewScaleUnit = viewScale
@@ -31,7 +40,15 @@ export default class GanttHeadersGenerator {
 
       let maximumDate = moment(columnsManager.columns[columnsManager.columns.length - 1].endDate)
 
-      while (true) {
+      let viewScaleValueArrayIndex = 0;
+      while (true) {        
+        if (viewScaleValueArray.length > 0) {
+          viewScaleValue = viewScaleValueArray[viewScaleValueArrayIndex++];
+          if (viewScaleValueArrayIndex >= viewScaleValueArray.length) {
+            viewScaleValueArrayIndex = 0;
+          }
+        }
+
         let currentPosition = currentColumn.getPositionByDate(currentDate)
 
         let endDate = moment.min(moment(currentDate).add(viewScaleValue, viewScaleUnit), maximumDate)
