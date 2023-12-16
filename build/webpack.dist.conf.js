@@ -38,7 +38,7 @@ webpackConfig = merge(baseWebpackConfig, {
     'css-element-queries/src/ElementQueries': 'css-element-queries/src/ElementQueries',
     'css-element-queries/src/ResizeSensor': 'css-element-queries/src/ResizeSensor',
     'font-awesome': 'font-awesome',
-    'jsplumb': 'jsPlumb'
+    'jsplumb': 'jsplumb'
   },
   module: {
     rules: utils.styleLoaders({
